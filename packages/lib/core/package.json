@@ -1,0 +1,25 @@
+{
+    "name": "@chatgpt-telegram-workers/core",
+    "type": "module",
+    "version": "1.10.3",
+    "imports": {
+        "#/*": "./src/*"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "build": "pnpm vite build",
+        "clean": "rm -rf dist && rm -rf node_modules && rm -rf tsconfig.tsbuildinfo",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@chatgpt-telegram-workers/plugins": "workspace:*"
+    },
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20251014.0",
+        "@types/jest": "^30.0.0",
+        "jest": "^30.2.0",
+        "toml": "^3.0.0",
+        "ts-jest": "^29.4.5"
+    }
+}

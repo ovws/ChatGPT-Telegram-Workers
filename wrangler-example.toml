@@ -1,37 +1,47 @@
-# 这里的 name 改成你自己的workers 的名字
-name = "chatgpt-telegram-workers"
-compatibility_date = "2023-03-04"
-main = "./dist/index.js"
+# Change the name here to the name of your own workers.
+name = 'chatgpt-telegram-workers'
 workers_dev = true
+compatibility_date = "2024-11-11"
+compatibility_flags = ["nodejs_compat_v2"]
 
-# 这里的 id 为必填项 请填写你的 kv namespace id
-# preview_id 只在调试时使用，不需要请删除
+# Deploy dist
+main = './dist/index.js'   # Default use of dist/index.js
 
+# Deploy Core version
+# > pnpm run deploy:workers
+#main = './packages/apps/workers/src/index.ts'
+#or
+#main = './packages/apps/workers/dist/index.js'
+
+# Deploy Vercel AI version
+# > pnpm run deploy:workersnext
+#main = './packages/apps/workers-next/src/index.ts'
+#or
+#main = './packages/apps/workers-next/dist/index.js'
+
+# Deploy Telegram MarkdownV2 version
+# > pnpm run deploy:workersmk2
+#main = './packages/apps/workers-mk2/src/index.ts'
+#or
+#main = './packages/apps/workers-mk2/dist/index.js'
+
+
+# The id here is a required field
+# Please fill in your kv namespace id
+# preview_id is only used for debugging, please delete if not needed
+# If you want to know how to obtain the ID of kv_namespaces, please check here.
+# https://github.com/TBXark/ChatGPT-Telegram-Workers/blob/master/doc/en/DEPLOY.md
 kv_namespaces = [
-  { binding = "DATABASE", id = "", preview_id = "" }
+  { binding = 'DATABASE', id = '', preview_id = '' }
 ]
 
+
 [vars]
+# More parameters usage, please see https://github.com/TBXark/ChatGPT-Telegram-Workers/blob/master/doc/en/CONFIG.md
+# All variables must be strings, and the values of multiple parameters are separated by commas, such as "a,b,c"
+# If the value is a boolean, it is written as "true" or "false"
+# If the value is a number, it is written as a string, such as "1", "2", "3"
+# If the value is a JSON string, it is written as a string, such as '["a","b","c"]'
 
-# 更多参数使用请查看README.md
-# 没有注释的参数为必填项
-# 写了参数的选项为该参数的默认值 
-# 要使用前面有#的属性请去掉#号
-# 所有变量必须为字符串，多个参数的值之间用逗号隔开
-
-# 基本配置
-API_KEY = "sk-"
-TELEGRAM_AVAILABLE_TOKENS = ""
-CHAT_WHITE_LIST = ""
-# I_AM_A_GENEROUS_PERSON = "false"
-# AUTO_TRIM_HISTORY = "false"
-# MAX_HISTORY_LENGTH = "20"
-# DEBUG_MODE = "false"
-# CHAT_MODEL = "gpt-3.5-turbo"
-
-# 群组相关配置
-# GROUP_CHAT_BOT_ENABLE = "true"
-# TELEGRAM_BOT_NAME = ""
-# GROUP_CHAT_BOT_SHARE_MODE = "false"
-# CHAT_GROUP_WHITE_LIST = "false"
-
+# TELEGRAM_AVAILABLE_TOKENS = 'token1,token2'
+# CHAT_WHITE_LIST = 'chat_id1,chat_id2'
